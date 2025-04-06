@@ -8,6 +8,7 @@ const Notification = {
   CHANGE_OF_STOCK: "CHANGE_OF_STOCK",
   LOWEST_PRICE: "LOWEST_PRICE",
   THRESHOLD_MET: "THRESHOLD_MET",
+ 
 };
 
 export async function generateEmailBody(
@@ -86,7 +87,7 @@ const transporter = nodemailer.createTransport({
   port: 465,              
   secure: true,           
   auth: {
-    user: "arminnoob85@gmail.com",
+    user: "vmaske7071@gmail.com",
     pass: process.env.GMAIL_PASS,
   },
   tls: {
@@ -99,7 +100,7 @@ export const sendEmail = async (
   sendTo: string[]
 ) => {
   const mailOptions = {
-    from: "arminnoob85@gmail.com",
+    from: "vmaske7071@gmail.com",
     to: sendTo,
     html: emailContent.body,
     subject: emailContent.subject,

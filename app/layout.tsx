@@ -9,7 +9,7 @@ const spaceGrotesk = Space_Grotesk({
   weight: ["300", "400", "500", "600", "700"],
 });
 export const metadata: Metadata = {
-  title: "Pricewise",
+  title: "Trackwise",
   description:
     "Track Product prices effortlessly an save money on your online shopping.",
 };

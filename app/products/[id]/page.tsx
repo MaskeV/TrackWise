@@ -7,16 +7,13 @@ import { Product } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-
 interface Props {
   params: { id: string };
 }
-
 export default async function pageDetails({ params: { id } }: Props) {
   const product: Product = await getProductById(id);
   if (!product) redirect("/");
   const similarProducts: any = await getSimilarProducts(id);
-
   return (
     <div className="product-container">
       <div className="flex gap-28 xl:flex-row flex-col">
@@ -39,7 +36,6 @@ export default async function pageDetails({ params: { id } }: Props) {
                 className="text-base text-black opacity-50"
                 href={product.url}
                 target="_blank"
-                rel="noopener noreferrer"
               >
                 Visit Product
               </Link>
@@ -86,8 +82,8 @@ export default async function pageDetails({ params: { id } }: Props) {
               </p>
               {product.originalPrice !== product.currentPrice && (
                 <p className="text-[21px] line-through text-black opacity-50">
-                  {product.currency}
-                  {formatNumber(product.originalPrice)}
+                  {product.originalPrice}
+                  {formatNumber(product.currentPrice)}
                 </p>
               )}
             </div>
@@ -172,30 +168,27 @@ export default async function pageDetails({ params: { id } }: Props) {
           </h3>
           <div className="flex flex-col gap-4">
             <p className="line-clamp-5">
-              {product?.description ? product.description.replace(/\/\*[\s\S]*?\*\//g, "") : "No description available"}
+              {" "}
+              {product?.description.replace(/\/\*[\s\S]*?\*\//g, "")}
             </p>
           </div>
         </div>
-        <Link
-          href={product.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn w-fit mx-auto flex items-center justify-center gap-3 min-w-[280px]"
-        >
+        <button className="btn w-fit mx-auto flex items-center justify-center gap-3 min-w-[280px]">
           <Image
             src="/assets/icons/bag.svg"
             alt="check"
             width={22}
             height={22}
           />
-          <span className="text-base text-white">
+          <Link href="/" className="text-base text-white">
             Buy Now
-          </span>
-        </Link>
+          </Link>
+        </button>
       </div>
       {similarProducts && similarProducts?.length > 0 && (
         <div className="py-14 flex flex-col gap-2 w-full">
           <p className="section-text">Similar Products</p>
+
           <div className="flex flex-wrap gap-10 mt-7 w-full">
             {similarProducts.map((product: any) => (
               <ProductsCard key={product._id} product={product} />

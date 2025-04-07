@@ -7,13 +7,24 @@ import { Product } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-interface Props {
+// interface Props {
+//   params: { id: string };
+// }
+// export default async function pageDetails({ params: { id } }: Props) {
+//   const product: Product = await getProductById(id);
+//   if (!product) redirect("/");
+
+//   const similarProducts: any = await getSimilarProducts(id);
+
+export default async function ProductDetails({
+  params,
+}: {
   params: { id: string };
-}
-export default async function pageDetails({ params: { id } }: Props) {
-  const product: Product = await getProductById(id);
+}) {
+  const product: Product = await getProductById(params.id);
   if (!product) redirect("/");
-  const similarProducts: any = await getSimilarProducts(id);
+  
+  const similarProducts = await getSimilarProducts(params.id);
   return (
     <div className="product-container">
       <div className="flex gap-28 xl:flex-row flex-col">
@@ -158,7 +169,7 @@ export default async function pageDetails({ params: { id } }: Props) {
               />
             </div>
           </div>
-          <Modal productId={id} />
+          <Modal productId={params.id} />
         </div>
       </div>
       <div className="flex flex-col gap-6">

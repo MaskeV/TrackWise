@@ -2,7 +2,7 @@
 import { revalidatePath } from "next/cache";
 import Product from "../models/product.models";
 import { connectToDB } from "../mongoose";
-import { scrapeAmazonProduct } from "../scraper/amazon";
+import { scrapeProduct } from "../scraper/amazon";
 
 import { getAveragePrice, getHighestPrice, getLowestPrice } from "../utils";
 import { User } from "@/types";
@@ -16,7 +16,7 @@ export async function scrapeAndStoreProduct(productUrl: string) {
 
     if (!scrapedProduct) return;
     let product = scrapedProduct;
-    const existingProduct = await Product.findOne({ url: scrapedAmazonProduct.url });
+    const existingProduct = await Product.findOne({ url: scrapedProduct.url });
     if (existingProduct) {
       const updatedPriceHistory: any = [
         ...existingProduct.priceHistory,

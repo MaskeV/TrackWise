@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // import { scrapeAmazonProduct } from "./amazonScraper";
 // // import { scrapeFlipkartProduct } from "./flipkartScraper";
 // // import { scrapeUdemyCourse } from "./udemyScraper";
@@ -23,6 +24,8 @@
 // }
 
 
+=======
+>>>>>>> ea9a8a2cd849af48bb661d0a34ba6cb44d647ab3
 import axios from "axios";
 import * as cheerio from "cheerio";
 import {
@@ -106,3 +109,8 @@ export async function scrapeAmazonProduct(url: string) {
     throw new Error(`Failed to scrape product:${error.message}`);
   }
 }
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> ea9a8a2cd849af48bb661d0a34ba6cb44d647ab3
